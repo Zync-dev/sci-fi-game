@@ -949,7 +949,7 @@ Transform:
   m_GameObject: {fileID: 341853376}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23981144, y: 1e-45, z: 0, w: 0.9708195}
-  m_LocalPosition: {x: 0, y: 4.83, z: -5.1810894}
+  m_LocalPosition: {x: -2.46, y: 4.83, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2893,7 +2893,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23981144, y: 1e-45, z: 0, w: 0.9708195}
-  m_LocalPosition: {x: 0, y: 4.83, z: -5.1810894}
+  m_LocalPosition: {x: -2.46, y: 4.83, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5143,7 +5143,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1241862734819764, guid: b13f4c6e9f19dc049aa19ca242a8fc10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2035109726}
   m_SourcePrefab: {fileID: 100100000, guid: b13f4c6e9f19dc049aa19ca242a8fc10, type: 3}
 --- !u!4 &1693895268 stripped
 Transform:
@@ -5884,6 +5887,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4502450848602014, guid: 1f600ea1726e76143a3e3b03fc16bb80, type: 3}
   m_PrefabInstance: {fileID: 1211564735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2035109724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1241862734819764, guid: b13f4c6e9f19dc049aa19ca242a8fc10, type: 3}
+  m_PrefabInstance: {fileID: 1692811591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2035109726
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035109724}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &2047034280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9374,7 +9404,7 @@ Transform:
   m_GameObject: {fileID: 919132148061335637}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.998911}
+  m_LocalPosition: {x: -2.46, y: 0, z: 0.18}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children:

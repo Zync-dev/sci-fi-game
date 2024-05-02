@@ -15,39 +15,66 @@ public class PlayerMovement : MonoBehaviour
     float turnSmoothVelocity;
 
     Animator animator;
+    Rigidbody rb;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        // Player movement and rotation
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if (direction.magnitude > 0.1f)
         {
-            // check if shift key is being held down
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            {
-                // set the speed to the running speed
-                speed = runSpeed;
-                animator.Play("mixamo_com");
-            }
-            else
-            {
-                // set the speed to the walking speed
-                speed = normalSpeed;
-                animator.Play("Walking");
-            }
-
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             controller.Move(direction * speed * Time.deltaTime);
+        }
+
+        // Animation & speed handling
+
+        bool isWalking = animator.GetBool("isWalking");
+        bool isRunning = animator.GetBool("isRunning");
+
+        bool runPressed = Input.GetKey(KeyCode.LeftShift);
+
+        if (horizontal != 0 || vertical != 0)
+        {
+            if (Input.GetKey(KeyCode.Space) && !runPressed)
+            {
+                rb.AddForce(transform.up * 100f * Time.deltaTime);
+            }
+
+
+            if (runPressed && !isRunning)
+            {
+                speed = runSpeed;
+                animator.SetBool("isRunning", true);
+            } else if (!runPressed)
+            {
+                speed = normalSpeed;
+                animator.SetBool("isRunning", false);
+                animator.SetBool("isWalking", true);
+            }
+            else if (!isWalking)
+            {
+                speed = normalSpeed;
+                animator.SetBool("isWalking", true);
+            }
+        } else if (isWalking)
+        {
+            animator.SetBool("isWalking", false);
+        } else if (isRunning)
+        {
+            animator.SetBool("isRunning", false);
         }
     }
 }
