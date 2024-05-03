@@ -12,7 +12,9 @@ public class PlayerAttack : MonoBehaviour
 
     bool canAttack = true;
 
-    public GameObject StopModel;
+    public GameObject stopModel;
+
+    public GameObject cooldownText;
 
     void Start()
     {
@@ -39,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void AnimExecAttack()
     {
-        GameObject stopInstance = Instantiate(StopModel);
+        GameObject stopInstance = Instantiate(stopModel);
         stopInstance.transform.position = this.gameObject.transform.position;
         stopInstance.transform.position += new Vector3(0f, 1f, 0f);
         stopInstance.transform.rotation = this.gameObject.transform.rotation;
