@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 || vertical != 0 && !movementDisabled)
         {
-            if (runPressed && !isRunning)
+            if (runPressed && !isRunning && isWalking)
             {
                 speed = runSpeed;
                 animator.SetBool("isRunning", true);

@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftShift) && canAttack)
         {
             Attack();
         }
@@ -32,22 +32,23 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         canAttack = false;
-
         playerMovement.movementDisabled = true;
         animator.SetBool("isAttacking", true);
         StartCoroutine(AttackCooldown());
     }
 
-    public IEnumerator AttackCooldown()
+    public void AnimExecAttack()
     {
-        yield return new WaitForSeconds(2f);
-
         GameObject stopInstance = Instantiate(StopModel);
         stopInstance.transform.position = this.gameObject.transform.position;
         stopInstance.transform.position += new Vector3(0f, 1f, 0f);
         stopInstance.transform.rotation = this.gameObject.transform.rotation;
+    }
 
-        yield return new WaitForSeconds(1f);
+    public IEnumerator AttackCooldown()
+    {
+
+        yield return new WaitForSeconds(attackTime);
 
         playerMovement.movementDisabled = false;
         animator.SetBool("isAttacking", false);
