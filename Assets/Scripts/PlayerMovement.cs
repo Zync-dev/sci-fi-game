@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     float speed;
     public float normalSpeed = 2f; // normal walking speed
     public float runSpeed = 5f; // running speed
+    public bool movementDisabled = false;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -30,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        if (direction.magnitude > 0.1f)
+        if (direction.magnitude > 0.1f && !movementDisabled)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
@@ -46,19 +47,14 @@ public class PlayerMovement : MonoBehaviour
 
         bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
-        if (horizontal != 0 || vertical != 0)
+        if (horizontal != 0 || vertical != 0 && !movementDisabled)
         {
-            if (Input.GetKey(KeyCode.Space) && !runPressed)
-            {
-                rb.AddForce(transform.up * 100f * Time.deltaTime);
-            }
-
-
             if (runPressed && !isRunning)
             {
                 speed = runSpeed;
                 animator.SetBool("isRunning", true);
-            } else if (!runPressed)
+            }
+            else if (!runPressed)
             {
                 speed = normalSpeed;
                 animator.SetBool("isRunning", false);
@@ -69,10 +65,12 @@ public class PlayerMovement : MonoBehaviour
                 speed = normalSpeed;
                 animator.SetBool("isWalking", true);
             }
-        } else if (isWalking)
+        }
+        else if (isWalking)
         {
             animator.SetBool("isWalking", false);
-        } else if (isRunning)
+        }
+        else if (isRunning)
         {
             animator.SetBool("isRunning", false);
         }

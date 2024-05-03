@@ -9473,7 +9473,8 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652519836399}
   - component: {fileID: 235224414}
-  - component: {fileID: 919132148061335638}
+  - component: {fileID: 919132148061335641}
+  - component: {fileID: 919132148061335642}
   - component: {fileID: 919132148061335639}
   - component: {fileID: 919132148061335640}
   m_Layer: 0
@@ -9483,22 +9484,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &919132148061335638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148061335637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 786da1c4499b7bc44b9881fcde64a7fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 919132148061335640}
-  normalSpeed: 2
-  runSpeed: 5
-  turnSmoothTime: 0.12
 --- !u!136 &919132148061335639
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9548,6 +9533,38 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &919132148061335641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148061335637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786da1c4499b7bc44b9881fcde64a7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 919132148061335640}
+  normalSpeed: 2
+  runSpeed: 5
+  movementDisabled: 0
+  turnSmoothTime: 0.1
+--- !u!114 &919132148061335642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148061335637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bd3013d0d8d4d4680e8652a127b1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTime: 3
+  attackCooldown: 1
+  StopModel: {fileID: 369870672067504360, guid: a90c7a16836922746b6f50594f07ff25, type: 3}
 --- !u!4 &1031632035305869490
 Transform:
   m_ObjectHideFlags: 0
