@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2316790475777958155}
   - component: {fileID: 7166646551346300020}
   - component: {fileID: 7168118820442936988}
+  - component: {fileID: 5931334139951069507}
   m_Layer: 0
   m_Name: StopSign
   m_TagString: Untagged
@@ -84,6 +85,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 4, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5931334139951069507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369870672067504360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305b7ad85df5292468a10c2bc96624c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &1728975426997362557
 GameObject:
   m_ObjectHideFlags: 0

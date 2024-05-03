@@ -10,6 +10,8 @@ public class PlayerAttack : MonoBehaviour
     public float attackTime = 3f;
     public float attackCooldown = 1f;
 
+    bool canAttack = true;
+
     public GameObject StopModel;
 
     void Start()
@@ -18,11 +20,10 @@ public class PlayerAttack : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    bool runPressed = Input.GetKey(KeyCode.LeftShift);
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Mouse0) && !runPressed)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftShift))
         {
             Attack();
         }
@@ -30,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
+        canAttack = false;
+
         playerMovement.movementDisabled = true;
         animator.SetBool("isAttacking", true);
         StartCoroutine(AttackCooldown());
@@ -39,11 +42,10 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        GameObject stopInstance = Instantiate(StopModel, this.gameObject.transform);
+        GameObject stopInstance = Instantiate(StopModel);
         stopInstance.transform.position = this.gameObject.transform.position;
-
-        Rigidbody rb = stopInstance.GetComponent<Rigidbody>();
-        rb.AddForce(new Vector3(10f * Time.deltaTime, 0f, 0f));
+        stopInstance.transform.position += new Vector3(0f, 1f, 0f);
+        stopInstance.transform.rotation = this.gameObject.transform.rotation;
 
         yield return new WaitForSeconds(1f);
 
@@ -52,6 +54,6 @@ public class PlayerAttack : MonoBehaviour
 
         yield return new WaitForSeconds(attackCooldown);
 
-        // can attack again
+        canAttack = true;
     }
 }
