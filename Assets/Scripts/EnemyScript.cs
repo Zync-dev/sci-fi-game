@@ -11,8 +11,14 @@ public class EnemyScript : MonoBehaviour
 
     PlayerMovement playerMovement;
     PlayerHealth playerHealth;
+    EscapeMinigame escapeMinigame;
 
-    bool enemyCanAttack = true;
+    public bool enemyCanAttack = true;
+    bool isEnemyAttacking = false;
+
+    GameObject virtualCamera;
+
+    public float attackCooldown = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +28,9 @@ public class EnemyScript : MonoBehaviour
 
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
+
+        virtualCamera = GameObject.Find("Virtual Camera");
     }
 
     // Update is called once per frame
@@ -40,27 +49,47 @@ public class EnemyScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, 1.8f))
         {
-            print(hit.collider.name);
             if(hit.collider.gameObject.tag == "Player" && enemyCanAttack == true && playerHealth.isPlayerImmune == false)
             {
                 animator.SetBool("isAttacking", true);
-                playerMovement.movementDisabled = true;
+                playerMovement.DisableAllControls(true);
                 enemyCanAttack = false;
-                StartCoroutine(AttackCooldown());
+                isEnemyAttacking = true;
 
-                playerHealth.MakePlayerImmune();
+                StartCoroutine(DamagePlayer());
+
+                playerHealth.MakePlayerImmune(true);
+
+                escapeMinigame.StartMinigame();
+
+                virtualCamera.GetComponent<Animator>().Play("CameraZoom");
             }
         }
+    }
+
+    public void StopAttack()
+    {
+        playerMovement.DisableAllControls(false);
+        virtualCamera.GetComponent<Animator>().Play("CameraZoomOut");
+        animator.SetBool("isAttacking", false);
+        StartCoroutine(AttackCooldown());
+        isEnemyAttacking = false;
     }
 
 
     public IEnumerator AttackCooldown()
     {
-        playerMovement.DisableAllControls(true);
-        yield return new WaitForSeconds(2.5f);
-        animator.SetBool("isAttacking", false);
-        playerMovement.DisableAllControls(false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(attackCooldown);
+        playerHealth.MakePlayerImmune(false);
         enemyCanAttack = true;
+    }
+
+    public IEnumerator DamagePlayer()
+    {
+        while(isEnemyAttacking)
+        {
+            yield return new WaitForSeconds(1f);
+            playerHealth.DamagePlayer(5f);
+        }
     }
 }

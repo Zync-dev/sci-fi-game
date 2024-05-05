@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     PlayerMovement playerMovement;
-    EscapeMinigame escapeMinigame;
 
     Animator animator;
 
@@ -22,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
     }
 
     void Update()
@@ -39,7 +37,6 @@ public class PlayerAttack : MonoBehaviour
         canAttack = false;
         playerMovement.movementDisabled = true;
         animator.SetBool("isAttacking", true);
-        escapeMinigame.StartMinigame();
         StartCoroutine(AttackCooldown());
     }
 

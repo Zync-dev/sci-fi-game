@@ -11,6 +11,8 @@ public class EscapeMinigame : MonoBehaviour
     int spawnAmount;
     int spawnedAmout = 0;
 
+    GameObject[] enemies;
+
     void Start()
     {
         spawnAmount = Random.Range(5, 10);
@@ -20,7 +22,6 @@ public class EscapeMinigame : MonoBehaviour
 
     public void StartMinigame()
     {
-        print("Started!");
         SpawnButton();
     }
 
@@ -48,7 +49,16 @@ public class EscapeMinigame : MonoBehaviour
     {
         if (spawnedAmout >= spawnAmount)
         {
-            print("MINIGAME DONE");
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject i in enemies)
+            {
+                EnemyScript enemyScript = i.GetComponent<EnemyScript>();
+                enemyScript.StopAttack();
+            }
+
+            spawnAmount = Random.Range(5, 10);
+            spawnedAmout = 0;
         } else
         {
             SpawnButton();
