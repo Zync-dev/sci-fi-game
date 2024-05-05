@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     PlayerMovement playerMovement;
+    EscapeMinigame escapeMinigame;
+
     Animator animator;
 
     public float attackTime = 3f;
     public float attackCooldown = 1f;
 
-    bool canAttack = true;
+    public bool canAttack = true;
 
     public GameObject stopModel;
 
@@ -20,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
     }
 
     void Update()
@@ -36,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
         canAttack = false;
         playerMovement.movementDisabled = true;
         animator.SetBool("isAttacking", true);
+        escapeMinigame.StartMinigame();
         StartCoroutine(AttackCooldown());
     }
 
@@ -47,13 +51,16 @@ public class PlayerAttack : MonoBehaviour
         stopInstance.transform.rotation = this.gameObject.transform.rotation;
     }
 
+    public void AnimEnd()
+    {
+        animator.SetBool("isAttacking", false);
+        playerMovement.movementDisabled = false;
+    }
+
     public IEnumerator AttackCooldown()
     {
 
         yield return new WaitForSeconds(attackTime);
-
-        playerMovement.movementDisabled = false;
-        animator.SetBool("isAttacking", false);
 
         yield return new WaitForSeconds(attackCooldown);
 

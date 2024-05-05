@@ -969,6 +969,7 @@ GameObject:
   - component: {fileID: 4148229345220856565}
   - component: {fileID: 3677353290030098887}
   - component: {fileID: 5169123539495856728}
+  - component: {fileID: 1385666707462797125}
   - component: {fileID: 2636628095492829068}
   - component: {fileID: 2945771747090597093}
   m_Layer: 0
@@ -1037,6 +1038,7 @@ MonoBehaviour:
   normalSpeed: 2
   runSpeed: 5
   movementDisabled: 0
+  attackDisabled: 0
   turnSmoothTime: 0.1
 --- !u!114 &5169123539495856728
 MonoBehaviour:
@@ -1052,8 +1054,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackTime: 3
   attackCooldown: 1
+  canAttack: 1
   stopModel: {fileID: 5345020547651770191, guid: 45c240887c072a94eb99a235ee967705, type: 3}
   cooldownText: {fileID: 0}
+--- !u!114 &1385666707462797125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3999860190759325779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdcf0afc3571314469c473e7ad013220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 100
+  playerImmunityTime: 1
+  isPlayerImmune: 0
 --- !u!136 &2636628095492829068
 CapsuleCollider:
   m_ObjectHideFlags: 0

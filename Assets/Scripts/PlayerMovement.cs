@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float normalSpeed = 2f; // normal walking speed
     public float runSpeed = 5f; // running speed
     public bool movementDisabled = false;
+    public bool attackDisabled = false;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -18,8 +19,11 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     Rigidbody rb;
 
+    PlayerAttack playerAttack;
+
     private void Start()
     {
+        playerAttack = GetComponent<PlayerAttack>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
@@ -49,18 +53,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 || vertical != 0 && !movementDisabled)
         {
-            if (runPressed && !isRunning && isWalking)
+            if (runPressed && !isRunning && isWalking && !movementDisabled)
             {
                 speed = runSpeed;
                 animator.SetBool("isRunning", true);
             }
-            else if (!runPressed)
+            else if (!runPressed && !movementDisabled)
             {
                 speed = normalSpeed;
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isWalking", true);
             }
-            else if (!isWalking)
+            else if (!isWalking && !movementDisabled)
             {
                 speed = normalSpeed;
                 animator.SetBool("isWalking", true);
@@ -74,5 +78,27 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+    }
+
+    public void DisableAllControls(bool disable)
+    {
+        if(disable == true)
+        {
+            movementDisabled = true;
+            playerAttack.canAttack = false;
+
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isTerrified", true);
+        } 
+        else if (disable == false)
+        {
+            movementDisabled = false;
+            playerAttack.canAttack = true;
+
+            animator.SetBool("isTerrified", false);
+        }
+
+
     }
 }
