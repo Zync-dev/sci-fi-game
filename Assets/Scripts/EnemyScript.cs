@@ -63,6 +63,7 @@ public class EnemyScript : MonoBehaviour
             {
                 animator.SetBool("isAttacking", true);
                 playerMovement.DisableAllControls(true);
+                playerMovement.animator.SetBool("isTerrified", true);
                 enemyCanAttack = false;
                 isEnemyAttacking = true;
 
@@ -90,6 +91,7 @@ public class EnemyScript : MonoBehaviour
     public void StopAttack()
     {
         playerMovement.DisableAllControls(false);
+        playerMovement.animator.SetBool("isTerrified", false);
         virtualCamera.GetComponent<Animator>().Play("CameraZoomOut");
         animator.SetBool("isAttacking", false);
         StartCoroutine(AttackCooldown());

@@ -17,7 +17,7 @@ public class EscapeMinigame : MonoBehaviour
     {
         spawnAmount = Random.Range(5, 10);
 
-        canvas = FindObjectOfType<Canvas>();
+        canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
     }
 
     public void StartMinigame()

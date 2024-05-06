@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
-    Animator animator;
+    public Animator animator;
     Rigidbody rb;
 
     PlayerAttack playerAttack;
@@ -135,14 +135,11 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetBool("isRunning", false);
             animator.SetBool("isWalking", false);
-            animator.SetBool("isTerrified", true);
         }
         else if (disable == false)
         {
             movementDisabled = false;
             playerAttack.canAttack = true;
-
-            animator.SetBool("isTerrified", false);
         }
     }
 }
