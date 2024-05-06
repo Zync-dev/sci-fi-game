@@ -22,6 +22,8 @@ public class EnemyScript : MonoBehaviour
 
     public float attackCooldown = 2f;
 
+    public float enemyHealth = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +40,13 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination = player.position;
+        if (enemyHealth > 0 && (this.transform.position.x - player.transform.position.x) <= 15)
+        {
+            agent.destination = player.position;
+        } else
+        {
+            agent.ResetPath();
+        }
 
         if(agent.velocity.magnitude > 0)
         {
@@ -66,6 +74,16 @@ public class EnemyScript : MonoBehaviour
 
                 virtualCamera.GetComponent<Animator>().Play("CameraZoom");
             }
+        }
+
+        if(enemyHealth <= 0f)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isDying", true);
+            enemyCanAttack = false;
+
+            CapsuleCollider[] collider = GetComponents<CapsuleCollider>();
+            foreach (CapsuleCollider collider2 in collider) { collider2.enabled = false; }
         }
     }
 
