@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
     public float playerImmunityTime = 3.5f;
     public bool isPlayerImmune = false;
 
+    public Slider healthSlider;
+
     Animator animator;
 
     GameObject[] enemies;
@@ -16,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        healthSlider.value = playerHealth;
     }
 
     public void DamagePlayer(float damage)
@@ -39,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
                 enemyScript.enemyCanAttack = false;
             }
         }
+
+        healthSlider.value = playerHealth;
     }
 
     public void MakePlayerImmune(bool immune)

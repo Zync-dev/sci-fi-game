@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerAttack playerAttack;
 
+    public float stamina = 100f;
+
     private void Start()
     {
         playerAttack = GetComponent<PlayerAttack>();
