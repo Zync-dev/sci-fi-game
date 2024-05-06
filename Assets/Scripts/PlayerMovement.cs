@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,13 +23,20 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerAttack playerAttack;
 
+    public Slider playerStamina;
     public float stamina = 100f;
+    public float staminaUseRate = 0.1f;
+    public float staminaRegenRate = 0.1f;
+
+    bool isRunning;
 
     private void Start()
     {
         playerAttack = GetComponent<PlayerAttack>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        playerStamina.value = stamina;
     }
 
     void Update()
@@ -55,16 +64,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0 || vertical != 0 && !movementDisabled)
         {
-            if (runPressed && !isRunning && isWalking && !movementDisabled)
-            {
-                speed = runSpeed;
-                animator.SetBool("isRunning", true);
-            }
-            else if (!runPressed && !movementDisabled)
+            if (!runPressed && !movementDisabled)
             {
                 speed = normalSpeed;
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isWalking", true);
+            }
+            else if (runPressed && !isRunning && isWalking && !movementDisabled && stamina > 20)
+            {
+                StopCoroutine(StaminaDepletion());
+                speed = runSpeed;
+                animator.SetBool("isRunning", true);
+                StartCoroutine(StaminaDepletion());
             }
             else if (!isWalking && !movementDisabled)
             {
@@ -80,6 +91,33 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+
+        if (stamina <= 0)
+        {
+            StopCoroutine(StaminaDepletion());
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isWalking", true);
+            speed = normalSpeed;
+            StartCoroutine(StaminaDepletion());
+            stamina += 1;
+        }
+    }
+
+    public IEnumerator StaminaDepletion()
+    {
+        while (animator.GetBool("isRunning") && stamina > 0)
+        {
+            yield return new WaitForSeconds(staminaUseRate);
+            stamina--;
+            playerStamina.value = stamina;
+        }
+
+        while (!animator.GetBool("isRunning") && stamina < 100f)
+        {
+            yield return new WaitForSeconds(staminaRegenRate);
+            stamina++;
+            playerStamina.value = stamina;
+        }
     }
 
     public void DisableAllControls(bool disable)
@@ -92,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRunning", false);
             animator.SetBool("isWalking", false);
             animator.SetBool("isTerrified", true);
-        } 
+        }
         else if (disable == false)
         {
             movementDisabled = false;
@@ -100,7 +138,5 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetBool("isTerrified", false);
         }
-
-
     }
 }

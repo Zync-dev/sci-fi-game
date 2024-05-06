@@ -928,7 +928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341853376}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1778372, y: -0.000000016932109, z: 0.0000000030599345, w: 0.98405993}
+  m_LocalRotation: {x: 0.17783721, y: 0.000000016932109, z: -0.000000003059935, w: 0.98405993}
   m_LocalPosition: {x: -0.19, y: 4.032, z: -11.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2761,7 +2761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &788306780
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3488,7 +3488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1778372, y: -0.000000016932109, z: 0.0000000030599345, w: 0.98405993}
+  m_LocalRotation: {x: 0.17783721, y: 0.000000016932109, z: -0.000000003059935, w: 0.98405993}
   m_LocalPosition: {x: -0.19, y: 4.032, z: -11.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4264,7 +4264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1127053474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13353,10 +13353,6 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1040786100}
-    - target: {fileID: 1385666707462797125, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
-      propertyPath: playerImmunityTime
-      value: 3.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1419663220930281841, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -13481,18 +13477,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -46.75748
       objectReference: {fileID: 0}
-    - target: {fileID: 2636628095492829068, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
-      propertyPath: m_Height
-      value: 2.7976472
-      objectReference: {fileID: 0}
-    - target: {fileID: 2636628095492829068, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
-      propertyPath: m_Center.x
-      value: -1.8010819e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 2636628095492829068, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
-      propertyPath: m_Center.y
-      value: 0.7090375
-      objectReference: {fileID: 0}
     - target: {fileID: 2718911410703054782, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -13588,6 +13572,14 @@ PrefabInstance:
     - target: {fileID: 3523933822240355345, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 79.96836
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677353290030098887, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
+      propertyPath: playerStamina
+      value: 
+      objectReference: {fileID: 1457567999}
+    - target: {fileID: 3677353290030098887, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
+      propertyPath: staminaRegenRate
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3744548063550962381, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

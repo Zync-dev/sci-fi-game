@@ -1,5 +1,7 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -75,7 +77,6 @@ public class EnemyScript : MonoBehaviour
         StartCoroutine(AttackCooldown());
         isEnemyAttacking = false;
     }
-
 
     public IEnumerator AttackCooldown()
     {

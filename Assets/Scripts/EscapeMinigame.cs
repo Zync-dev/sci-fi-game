@@ -28,8 +28,8 @@ public class EscapeMinigame : MonoBehaviour
     void SpawnButton()
     {
         Vector2 randomPos = new Vector2(
-            Random.Range(0, canvas.pixelRect.width),
-            Random.Range(0, canvas.pixelRect.height)
+            Random.Range(100, canvas.pixelRect.width-100),
+            Random.Range(100, canvas.pixelRect.height-100)
         );
 
         GameObject buttonInstance = Instantiate(buttonPrefab, randomPos, Quaternion.identity);
@@ -40,8 +40,9 @@ public class EscapeMinigame : MonoBehaviour
         Button button = buttonInstance.GetComponent<Button>();
         if (button != null)
         {
-            button.onClick.AddListener(() => Destroy(buttonInstance));
+            button.onClick.AddListener(() => button.gameObject.GetComponent<Animator>().SetBool("shouldExit", true));
             button.onClick.AddListener(BtnClick);
+            button.onClick.AddListener(() => button.interactable = false);
         }
     }
 

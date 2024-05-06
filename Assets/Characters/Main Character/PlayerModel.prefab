@@ -1040,6 +1040,10 @@ MonoBehaviour:
   movementDisabled: 0
   attackDisabled: 0
   turnSmoothTime: 0.1
+  playerStamina: {fileID: 0}
+  stamina: 100
+  staminaUseRate: 0.05
+  staminaRegenRate: 0.1
 --- !u!114 &5169123539495856728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,8 +1074,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 100
-  playerImmunityTime: 1
+  playerImmunityTime: 3.5
   isPlayerImmune: 0
+  healthSlider: {fileID: 0}
 --- !u!136 &2636628095492829068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1092,9 +1097,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.13951097
-  m_Height: 1.7
+  m_Height: 2.7976472
   m_Direction: 1
-  m_Center: {x: 0, y: 0.88, z: 0.0021753993}
+  m_Center: {x: -1.8010819e-17, y: 0.7090375, z: 0.0021753993}
 --- !u!143 &2945771747090597093
 CharacterController:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 179929791430302838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2480317066811020964}
@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 1818948900801099990}
   - component: {fileID: 2375673369596398748}
   - component: {fileID: 8247872597880672772}
+  - component: {fileID: 1510676545357658784}
   m_Layer: 5
   m_Name: MiniGameBtn
   m_TagString: Untagged
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a2adb5d4af68e464eb961dd87b544445, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f240b89ab1539254090d4ec9534dea86, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -218,3 +219,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1510676545357658784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442163433284499829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceae52a5c302e3943879f472dcd3b5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
