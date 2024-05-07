@@ -61,6 +61,14 @@ public class EnemyScript : MonoBehaviour
         {
             if(hit.collider.gameObject.tag == "Player" && enemyCanAttack == true && playerHealth.isPlayerImmune == false)
             {
+                GameObject[] activeProjectiles;
+                activeProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+
+                foreach(GameObject projectile in activeProjectiles) 
+                {
+                    Destroy(projectile);
+                }
+
                 animator.SetBool("isAttacking", true);
                 playerMovement.DisableAllControls(true);
                 playerMovement.animator.SetBool("isTerrified", true);
