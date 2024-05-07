@@ -73,6 +73,7 @@ public class NPCScript : MonoBehaviour
             currentDesc++;
             NPC_DESCRIPTION.text = DESCRIPTIONS[currentDesc];
         }
+        playerMovement.DisableAllControls(true);
     }
     public void BackBtnClick()
     {
@@ -81,6 +82,7 @@ public class NPCScript : MonoBehaviour
             currentDesc--;
             NPC_DESCRIPTION.text = DESCRIPTIONS[currentDesc];
         }
+        playerMovement.DisableAllControls(true);
     }
 
     public void ExitBtnClick()

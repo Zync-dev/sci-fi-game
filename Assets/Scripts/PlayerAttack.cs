@@ -25,7 +25,6 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftShift) && canAttack)
         {
             Attack();

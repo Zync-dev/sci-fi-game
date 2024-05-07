@@ -17,6 +17,7 @@ public class EnemyScript : MonoBehaviour
 
     public bool enemyCanAttack = true;
     bool isEnemyAttacking = false;
+    public bool isEnemyDead = false;
 
     GameObject virtualCamera;
 
@@ -59,10 +60,11 @@ public class EnemyScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, 1.8f))
         {
-            if(hit.collider.gameObject.tag == "Player" && enemyCanAttack == true && playerHealth.isPlayerImmune == false)
+            if(hit.collider.gameObject.tag == "Player" && enemyCanAttack == true && playerHealth.isPlayerImmune == false && enemyHealth > 0 && !isEnemyDead)
             {
                 GameObject[] activeProjectiles;
                 activeProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+                playerMovement.animator.SetBool("isAttacking", false);
 
                 foreach(GameObject projectile in activeProjectiles) 
                 {
@@ -85,14 +87,22 @@ public class EnemyScript : MonoBehaviour
             }
         }
 
-        if(enemyHealth <= 0f)
+        if(enemyHealth <= 0f && !isEnemyDead)
         {
+            playerMovement.DisableAllControls(false);
+            playerMovement.animator.SetBool("isTerrified", false);
+            animator.SetBool("isAttacking", false);
+            StartCoroutine(AttackCooldown());
+            isEnemyAttacking = false;
+
             animator.SetBool("isWalking", false);
             animator.SetBool("isDying", true);
             enemyCanAttack = false;
 
             CapsuleCollider[] collider = GetComponents<CapsuleCollider>();
             foreach (CapsuleCollider collider2 in collider) { collider2.enabled = false; }
+
+            isEnemyDead = true;
         }
     }
 

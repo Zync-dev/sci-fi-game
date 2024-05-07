@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public float normalSpeed = 2f; // normal walking speed
     public float runSpeed = 5f; // running speed
     public bool movementDisabled = false;
-    public bool attackDisabled = false;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
