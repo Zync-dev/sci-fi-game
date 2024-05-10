@@ -81,7 +81,7 @@ public class EnemyScript : MonoBehaviour
 
                 playerHealth.MakePlayerImmune(true);
 
-                escapeMinigame.StartMinigame();
+                escapeMinigame.StartMinigame("Enemy");
 
                 virtualCamera.GetComponent<Animator>().Play("CameraZoom");
             }

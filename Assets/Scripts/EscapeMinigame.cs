@@ -11,6 +11,8 @@ public class EscapeMinigame : MonoBehaviour
     int spawnAmount;
     int spawnedAmout = 0;
 
+    string type;
+
     GameObject[] enemies;
 
     void Start()
@@ -20,11 +22,13 @@ public class EscapeMinigame : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
     }
 
-    public void StartMinigame()
+    public void StartMinigame(string type2)
     {
+        type = type2;
         SpawnButton();
     }
 
+    // ENEMY MINIGAME
     void SpawnButton()
     {
         Vector2 randomPos = new Vector2(
@@ -48,21 +52,35 @@ public class EscapeMinigame : MonoBehaviour
 
     private void BtnClick()
     {
-        if (spawnedAmout >= spawnAmount)
+        if(type == "Enemy")
         {
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (GameObject i in enemies)
+            if (spawnedAmout >= spawnAmount)
             {
-                EnemyScript enemyScript = i.GetComponent<EnemyScript>();
-                enemyScript.StopAttack();
-            }
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            spawnAmount = Random.Range(5, 10);
-            spawnedAmout = 0;
-        } else
+                foreach (GameObject i in enemies)
+                {
+                    EnemyScript enemyScript = i.GetComponent<EnemyScript>();
+                    enemyScript.StopAttack();
+                }
+
+                spawnAmount = Random.Range(5, 10);
+                spawnedAmout = 0;
+            }
+            else
+            {
+                SpawnButton();
+            }
+        } else if(type == "Boss")
         {
-            SpawnButton();
+            if (spawnedAmout >= spawnAmount)
+            {
+                
+            }
+            else
+            {
+                SpawnButton();
+            }
         }
     }
 }
