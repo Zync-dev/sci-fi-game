@@ -21,9 +21,13 @@ public class BossScript : MonoBehaviour
 
     public TMP_Text questionTxt;
     public Button answer1;
+    public TMP_Text answer1txt;
     public Button answer2;
+    public TMP_Text answer2txt;
     public Button answer3;
+    public TMP_Text answer3txt;
     public Button answer4;
+    public TMP_Text answer4txt;
 
     public GameObject playerModel;
     public GameObject enemyModel;
@@ -47,14 +51,16 @@ public class BossScript : MonoBehaviour
         Fade(0);
     }
 
-    void Fade(int fadeType)
+    public void Fade(int fadeType)
     {
         if(fadeType == 0)
         {
+            fadePanel.SetActive(true);
             fadePanel.GetComponent<Animator>().Play("FadeIn");
         }
         else if (fadeType == 1)
         {
+            fadePanel.SetActive(true);
             fadePanel.GetComponent<Animator>().Play("FadeOut");
         }
         else
@@ -63,40 +69,41 @@ public class BossScript : MonoBehaviour
         }
     }
 
-    void AfterFadeIn()
+    public void AfterFadeIn()
     {
         playerModel.transform.position = enemyModel.transform.position;
         playerModel.transform.position += new Vector3(-5f, 0f ,0f);
         virtualCamera.GetComponent<Animator>().Play("BossAnimation");
+
+        bossSlider.gameObject.SetActive(true);
     }
 
-    void MoveCamera()
-    {
-        // Move camera to behind player looking at enemy
-        // AKA play camera animation
-    }
-
-    float chosenQuestion;
-    void StartQuiz()
+    int chosenQuestion;
+    public void StartQuiz()
     {
         ShowQuestionPanel(true);
+        DisableButtons(true); //Makes buttons interactable (btn.interactable = true)
 
-        chosenQuestion = Random.Range(0f, questions.Length/6);
+        chosenQuestion = Random.Range(0, questions.Length/6);
 
-        answer1.GetComponentInChildren<TMP_Text>().text = questions[(int)chosenQuestion, 1].ToString();
-        answer2.GetComponentInChildren<TMP_Text>().text = questions[(int)chosenQuestion, 2].ToString();
-        answer3.GetComponentInChildren<TMP_Text>().text = questions[(int)chosenQuestion, 3].ToString();
-        answer4.GetComponentInChildren<TMP_Text>().text = questions[(int)chosenQuestion, 4].ToString();
+        print(chosenQuestion);
 
-        // List of questions with answers in UI.
-        // Variabel der fortæller hvilket svar der er det korrekte for hvert spørgsmål.
+        questionTxt.text = questions[chosenQuestion, 0];
+
+        answer1txt.text = questions[chosenQuestion, 1];
+        answer2txt.text = questions[chosenQuestion, 2];
+        answer3txt.text = questions[chosenQuestion, 3];
+        answer4txt.text = questions[chosenQuestion, 4];
+
         // Efter Quiz Start Minigame!
         // Herefter start Quiz igen!
     }
 
-    void Answer1BtnClicked()
+    public void Answer1BtnClicked()
     {
-        if (int.Parse(questions[(int)chosenQuestion, 6]) == 1)
+        DisableButtons(false);
+
+        if (int.Parse(questions[chosenQuestion, 5]) == 1)
         {
             CorrectAnswer();
         }
@@ -105,9 +112,11 @@ public class BossScript : MonoBehaviour
             WrongAnswer();
         }
     }
-    void Answer2BtnClicked()
+    public void Answer2BtnClicked()
     {
-        if (int.Parse(questions[(int)chosenQuestion, 6]) == 2)
+        DisableButtons(false);
+
+        if (int.Parse(questions[chosenQuestion, 5]) == 2)
         {
             CorrectAnswer();
         }
@@ -116,9 +125,11 @@ public class BossScript : MonoBehaviour
             WrongAnswer();
         }
     }
-    void Answer3BtnClicked()
+    public void Answer3BtnClicked()
     {
-        if (int.Parse(questions[(int)chosenQuestion, 6]) == 3)
+        DisableButtons(false);
+
+        if (int.Parse(questions[chosenQuestion, 5]) == 3)
         {
             CorrectAnswer();
         }
@@ -127,9 +138,11 @@ public class BossScript : MonoBehaviour
             WrongAnswer();
         }
     }
-    void Answer4BtnClicked()
+    public void Answer4BtnClicked()
     {
-        if (int.Parse(questions[(int)chosenQuestion, 6]) == 4)
+        DisableButtons(false);
+
+        if (int.Parse(questions[chosenQuestion, 5]) == 4)
         {
             CorrectAnswer();
         }
@@ -137,12 +150,22 @@ public class BossScript : MonoBehaviour
         {
             WrongAnswer();
         }
+    }
+
+    void DisableButtons(bool disable)
+    {
+        answer1.interactable = disable;
+        answer2.interactable = disable;
+        answer3.interactable = disable;
+        answer4.interactable = disable;
     }
 
     void CorrectAnswer()
     {
         correctOrWrongTxt.color = Color.green;
         correctOrWrongTxt.text = "CORRECT!";
+
+        questionPanel.GetComponent<Animator>().Play("RevealCorrectWrong");
 
         ChangeSliderValue(20);
     }
@@ -151,19 +174,15 @@ public class BossScript : MonoBehaviour
     {
         correctOrWrongTxt.color = Color.red;
         correctOrWrongTxt.text = "WRONG!";
+
+        questionPanel.GetComponent<Animator>().Play("RevealCorrectWrong");
         
         ChangeSliderValue(-20);
     }
 
     void ChangeSliderValue(float num)
     {
-        if (num < 0)
-        {
-            bossSlider.value -= num;
-        } else if(num > 0)
-        {
-            bossSlider.value += num;
-        }
+        bossSlider.value += num;
     } 
 
     void HidePlayerUI()

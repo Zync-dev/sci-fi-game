@@ -148,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
         {
             BossScript bossScript = GameObject.Find("GameManager").GetComponent<BossScript>();
             bossScript.StartBossFight();
+            Destroy(other.gameObject);
         }
     }
 }
