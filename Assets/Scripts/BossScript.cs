@@ -25,11 +25,14 @@ public class BossScript : MonoBehaviour
     public Button answer3;
     public Button answer4;
 
+    public GameObject playerModel;
+    public GameObject enemyModel;
+
     public string[,] questions = { 
-        { "Question 1", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "3" },
-        { "Question 2", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "2" },
-        { "Question 3", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "4"},
-        { "Question 4", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "1"}
+        { "Question 1", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "3" /* <---- CORRECT ANSWER IS 3*/},
+        { "Question 2", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "2" /* <---- CORRECT ANSWER IS 2*/},
+        { "Question 3", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "4" /* <---- CORRECT ANSWER IS 4*/},
+        { "Question 4", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "1" /* <---- CORRECT ANSWER IS 1*/}
     };
 
 
@@ -39,7 +42,7 @@ public class BossScript : MonoBehaviour
     // When player answer wrong, slider fall
     // When minigame playing, make slider fall a little every second
 
-    void StartBossFight()
+    public void StartBossFight()
     {
         Fade(0);
     }
@@ -62,6 +65,8 @@ public class BossScript : MonoBehaviour
 
     void AfterFadeIn()
     {
+        playerModel.transform.position = enemyModel.transform.position;
+        playerModel.transform.position += new Vector3(-5f, 0f ,0f);
         virtualCamera.GetComponent<Animator>().Play("BossAnimation");
     }
 
@@ -138,12 +143,16 @@ public class BossScript : MonoBehaviour
     {
         correctOrWrongTxt.color = Color.green;
         correctOrWrongTxt.text = "CORRECT!";
+
+        ChangeSliderValue(20);
     }
 
     void WrongAnswer()
     {
         correctOrWrongTxt.color = Color.red;
         correctOrWrongTxt.text = "WRONG!";
+        
+        ChangeSliderValue(-20);
     }
 
     void ChangeSliderValue(float num)

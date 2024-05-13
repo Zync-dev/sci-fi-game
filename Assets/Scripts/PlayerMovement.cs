@@ -141,4 +141,13 @@ public class PlayerMovement : MonoBehaviour
             playerAttack.canAttack = true;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "BOSS_START")
+        {
+            BossScript bossScript = GameObject.Find("GameManager").GetComponent<BossScript>();
+            bossScript.StartBossFight();
+        }
+    }
 }

@@ -19,6 +19,7 @@ public class NPCScript : MonoBehaviour
     public GameObject interactTxt;
 
     GameObject Player;
+    public GameObject playerUI;
     bool isDialogOpen = false;
     int currentDesc = 0;
 
@@ -51,6 +52,7 @@ public class NPCScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && isDialogOpen)
         {
             NPC_MODAL.SetActive(false);
+            playerUI.SetActive(true);
             playerMovement.DisableAllControls(false);
         }
 
@@ -64,6 +66,7 @@ public class NPCScript : MonoBehaviour
         NPC_DESCRIPTION.text = DESCRIPTIONS[currentDesc];
 
         playerMovement.DisableAllControls(true);
+        playerUI.SetActive(false);
     }
 
     public void NextBtnClick()
@@ -89,5 +92,6 @@ public class NPCScript : MonoBehaviour
     {
         NPC_MODAL.SetActive(false);
         playerMovement.DisableAllControls(false);
+        playerUI.SetActive(true);
     }
 }
