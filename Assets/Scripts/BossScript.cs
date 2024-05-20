@@ -84,6 +84,8 @@ public class BossScript : MonoBehaviour
         ShowQuestionPanel(true);
         DisableButtons(true); //Makes buttons interactable (btn.interactable = true)
 
+        questionPanel.GetComponent<Animator>().Play("New State");
+
         chosenQuestion = Random.Range(0, questions.Length/6);
 
         print(chosenQuestion);
@@ -168,6 +170,8 @@ public class BossScript : MonoBehaviour
         questionPanel.GetComponent<Animator>().Play("RevealCorrectWrong");
 
         ChangeSliderValue(20);
+
+        StartCoroutine(StartMinigame(false));
     }
 
     void WrongAnswer()
@@ -178,6 +182,8 @@ public class BossScript : MonoBehaviour
         questionPanel.GetComponent<Animator>().Play("RevealCorrectWrong");
         
         ChangeSliderValue(-20);
+
+        StartCoroutine(StartMinigame(true));
     }
 
     void ChangeSliderValue(float num)
@@ -202,6 +208,32 @@ public class BossScript : MonoBehaviour
         } else 
         {
             print("ERROR!");
+        }
+    }
+
+    public IEnumerator StartMinigame(bool lost)
+    {
+        if (lost)
+        {
+            yield return new WaitForSeconds(2f);
+            EscapeMinigame escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
+            escapeMinigame.StartMinigame("Boss");
+
+            while (escapeMinigame.spawnedAmout < escapeMinigame.spawnAmount)
+            {
+                yield return new WaitForSeconds(1f);
+                ChangeSliderValue(-2f);
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            StartQuiz();
+        } 
+        else if(!lost)
+        {
+            yield return new WaitForSeconds(1.5f);
+
+            StartQuiz();
         }
     }
 }

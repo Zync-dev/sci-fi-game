@@ -8,8 +8,8 @@ public class EscapeMinigame : MonoBehaviour
     public GameObject buttonPrefab;
     private Canvas canvas;
 
-    int spawnAmount;
-    int spawnedAmout = 0;
+    public int spawnAmount;
+    public int spawnedAmout = 0;
 
     string type;
 
@@ -24,6 +24,9 @@ public class EscapeMinigame : MonoBehaviour
 
     public void StartMinigame(string type2)
     {
+        spawnAmount = Random.Range(5, 10);
+        spawnedAmout = 0;
+
         type = type2;
         SpawnButton();
     }
@@ -39,12 +42,11 @@ public class EscapeMinigame : MonoBehaviour
         GameObject buttonInstance = Instantiate(buttonPrefab, randomPos, Quaternion.identity);
         buttonInstance.transform.SetParent(canvas.transform);
 
-        spawnedAmout++;
-
         Button button = buttonInstance.GetComponent<Button>();
         if (button != null)
         {
             button.onClick.AddListener(() => button.gameObject.GetComponent<Animator>().SetBool("shouldExit", true));
+            button.onClick.AddListener(() => spawnedAmout++);
             button.onClick.AddListener(BtnClick);
             button.onClick.AddListener(() => button.interactable = false);
         }
@@ -63,9 +65,6 @@ public class EscapeMinigame : MonoBehaviour
                     EnemyScript enemyScript = i.GetComponent<EnemyScript>();
                     enemyScript.StopAttack();
                 }
-
-                spawnAmount = Random.Range(5, 10);
-                spawnedAmout = 0;
             }
             else
             {
@@ -75,7 +74,6 @@ public class EscapeMinigame : MonoBehaviour
         {
             if (spawnedAmout >= spawnAmount)
             {
-                
             }
             else
             {
