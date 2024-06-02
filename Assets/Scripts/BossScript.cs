@@ -17,6 +17,9 @@ public class BossScript : MonoBehaviour
     public GameObject playerStamina;
     public GameObject playerHealth;
 
+    public GameObject lostWonScreen;
+    public TMP_Text lostWonText;
+
     public GameObject virtualCamera;
 
     public TMP_Text questionTxt;
@@ -33,10 +36,16 @@ public class BossScript : MonoBehaviour
     public GameObject enemyModel;
 
     public string[,] questions = {
-        { "Question 1", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "3" /* <---- CORRECT ANSWER IS 3*/},
-        { "Question 2", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "2" /* <---- CORRECT ANSWER IS 2*/},
-        { "Question 3", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "4" /* <---- CORRECT ANSWER IS 4*/},
-        { "Question 4", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "1" /* <---- CORRECT ANSWER IS 1*/}
+        { "Hvad er den mest effektive metode til at forhindre seksuelt overførte infektioner (STI'er) under samleje?", "Brug af tandtråd", "Brug af kondom", "Brug af antibiotika", "Brug af vitamin C", "2" /* <---- CORRECT ANSWER IS 2*/},
+        { "Hvilken type præventionsmiddel er en spiral?", "En pille", "En injektion", "Et implantat", "Et intrauterint system (IUD)", "4" /* <---- CORRECT ANSWER IS 4*/},
+        { "Hvilken af følgende seksuelt overførte infektioner kan forebygges med en vaccine?", "HIV", "Klamydia", "Gonoré", "HPV", "4" /* <---- CORRECT ANSWER IS 4*/},
+        { "Hvad betyder begrebet \"seksuel samtykke\"?", "At være enig i at gå på en date", "At give frivillig og entusiastisk tilladelse til seksuel aktivitet", "At købe præventionsmidler", "At deltage i seksual undervisning", "2" /* <---- CORRECT ANSWER IS 1*/},
+
+        { "Hvad er oftest årsag til uønskede graviditeter?", "Fejlslagne præventionsmidler", "Manglende brug af prævention", "Forkert brug af prævention", "Alle ovenstående", "4" /* <---- CORRECT ANSWER IS 4*/},
+        { "Hvad er formålet med seksualundervisning i skolerne?", "At reducere antallet af seksuelle partnere", "At informere og uddanne unge om sikker sex, prævention og seksuelle rettigheder", "At øge antallet af børn født hvert år", "At fremme ægteskab blandt unge", "2" /* <---- CORRECT ANSWER IS 2*/},
+        { "Hvilket af følgende er en seksuelt overført infektion, der kan behandles med antibiotika?", "HIV", "Klamydia", "HPV", "Herpes", "2" /* <---- CORRECT ANSWER IS 2*/},
+        { "Hvilken aldersgruppe er mest påvirket af seksuelt overførte infektioner?", "Børn under 10 år", "Teenagere og unge voksne (15-24 år)", "Voksne mellem 30-40 år", "Ældre over 60 år", "2" /* <---- CORRECT ANSWER IS 2*/},
+
     };
 
     PlayerMovement playerMovement;
@@ -50,13 +59,25 @@ public class BossScript : MonoBehaviour
     {
         if (bossSlider.value >= 100 || bossSlider.value <= 0)
         {
-            print("GAME DONE!");
+            if(bossSlider.value >= 100)
+            {
+                lostWonScreen.SetActive(true);
+                lostWonScreen.GetComponent<Animator>().Play("LostWonUIShow");
+                lostWonText.text = "DU HAR VUNDET OVER DE BERØRENDE MONSTRE. VERDEN ER NU IGEN FRI!";
+            } else
+            {
+                lostWonScreen.SetActive(true);
+                lostWonScreen.GetComponent<Animator>().Play("LostWonUIShow");
+                lostWonText.text = "DU HAR TABT OVER DE BERØRENDE MONSTRE. VERDEN ER FORTSAT BESAT!";
+            }
         }
     }
 
     public void StartBossFight()
     {
         playerMovement.DisableAllControls(true);
+        playerHealth.SetActive(false);
+        playerStamina.SetActive(false);
         Fade(0);
     }
 
