@@ -32,28 +32,37 @@ public class BossScript : MonoBehaviour
     public GameObject playerModel;
     public GameObject enemyModel;
 
-    public string[,] questions = { 
+    public string[,] questions = {
         { "Question 1", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "3" /* <---- CORRECT ANSWER IS 3*/},
         { "Question 2", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "2" /* <---- CORRECT ANSWER IS 2*/},
         { "Question 3", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "4" /* <---- CORRECT ANSWER IS 4*/},
         { "Question 4", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "1" /* <---- CORRECT ANSWER IS 1*/}
     };
 
+    PlayerMovement playerMovement;
 
-    // Slider value 1-100
-    // start value = 50
-    // When player answer correct, value rise
-    // When player answer wrong, slider fall
-    // When minigame playing, make slider fall a little every second
+    private void Start()
+    {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        if (bossSlider.value >= 100 || bossSlider.value <= 0)
+        {
+            print("GAME DONE!");
+        }
+    }
 
     public void StartBossFight()
     {
+        playerMovement.DisableAllControls(true);
         Fade(0);
     }
 
     public void Fade(int fadeType)
     {
-        if(fadeType == 0)
+        if (fadeType == 0)
         {
             fadePanel.SetActive(true);
             fadePanel.GetComponent<Animator>().Play("FadeIn");
@@ -72,7 +81,7 @@ public class BossScript : MonoBehaviour
     public void AfterFadeIn()
     {
         playerModel.transform.position = enemyModel.transform.position;
-        playerModel.transform.position += new Vector3(-5f, 0f ,0f);
+        playerModel.transform.position += new Vector3(-5f, 0f, 0f);
         virtualCamera.GetComponent<Animator>().Play("BossAnimation");
 
         bossSlider.gameObject.SetActive(true);
@@ -86,7 +95,7 @@ public class BossScript : MonoBehaviour
 
         questionPanel.GetComponent<Animator>().Play("New State");
 
-        chosenQuestion = Random.Range(0, questions.Length/6);
+        chosenQuestion = Random.Range(0, questions.Length / 6);
 
         print(chosenQuestion);
 
@@ -172,24 +181,28 @@ public class BossScript : MonoBehaviour
         ChangeSliderValue(20);
 
         StartCoroutine(StartMinigame(false));
-    }
 
+        PlayerAttack playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+        playerAttack.Attack();
+    }
     void WrongAnswer()
     {
         correctOrWrongTxt.color = Color.red;
         correctOrWrongTxt.text = "WRONG!";
 
         questionPanel.GetComponent<Animator>().Play("RevealCorrectWrong");
-        
+
         ChangeSliderValue(-20);
 
         StartCoroutine(StartMinigame(true));
+
+        enemyModel.GetComponent<Animator>().Play("Mutant Swiping");
     }
 
     void ChangeSliderValue(float num)
     {
         bossSlider.value += num;
-    } 
+    }
 
     void HidePlayerUI()
     {
@@ -199,13 +212,15 @@ public class BossScript : MonoBehaviour
 
     void ShowQuestionPanel(bool show)
     {
-        if(show == true)
+        if (show == true)
         {
             questionPanel.SetActive(true);
-        } else if (show == false)
+        }
+        else if (show == false)
         {
             questionPanel.SetActive(false);
-        } else 
+        }
+        else
         {
             print("ERROR!");
         }
@@ -213,27 +228,34 @@ public class BossScript : MonoBehaviour
 
     public IEnumerator StartMinigame(bool lost)
     {
-        if (lost)
+        if(bossSlider.value >= 100 || bossSlider.value <= 0)
         {
-            yield return new WaitForSeconds(2f);
-            EscapeMinigame escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
-            escapeMinigame.StartMinigame("Boss");
-
-            while (escapeMinigame.spawnedAmout < escapeMinigame.spawnAmount)
-            {
-                yield return new WaitForSeconds(1f);
-                ChangeSliderValue(-2f);
-            }
-
-            yield return new WaitForSeconds(1f);
-
-            StartQuiz();
+            print("GAME DONE!");
         } 
-        else if(!lost)
+        else
         {
-            yield return new WaitForSeconds(1.5f);
+            if (lost)
+            {
+                yield return new WaitForSeconds(2f);
+                EscapeMinigame escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
+                escapeMinigame.StartMinigame("Boss");
 
-            StartQuiz();
+                while (escapeMinigame.spawnedAmout < escapeMinigame.spawnAmount)
+                {
+                    yield return new WaitForSeconds(1f);
+                    ChangeSliderValue(-2f);
+                }
+
+                yield return new WaitForSeconds(1f);
+
+                StartQuiz();
+            }
+            else if (!lost)
+            {
+                yield return new WaitForSeconds(1.5f);
+
+                StartQuiz();
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - MainCanvas
   - PlayerProjectile
   - BOSS_START
+  - Boss
   layers:
   - Default
   - TransparentFX

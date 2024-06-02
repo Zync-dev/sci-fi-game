@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemyCanAttack: 1
+  isEnemyDead: 0
   attackCooldown: 3
   enemyHealth: 1
 --- !u!136 &8749049602938424857

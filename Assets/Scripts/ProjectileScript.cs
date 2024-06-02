@@ -42,6 +42,13 @@ public class ProjectileScript : MonoBehaviour
 
             Destroy(this.gameObject);
         }
+        if(other.tag == "Boss")
+        {
+            ParticleSystem hit = Instantiate(enemyHitParticle, this.transform.position, Quaternion.identity);
+            hit.Play();
+
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
