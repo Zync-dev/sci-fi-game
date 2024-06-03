@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press E to talk
+  m_text: Tryk E for at snakke
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b04f3173f946b754db673ac13842f4c1, type: 2}
   m_sharedMaterial: {fileID: 21728410361126204, guid: b04f3173f946b754db673ac13842f4c1, type: 2}
@@ -5476,7 +5476,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.97260666, z: -0, w: -0.23245698}
   m_LocalPosition: {x: 0.007809576, y: 0, z: -0.032675475}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.6999999, y: 0.7, z: 0.6999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1837723381788177785}
@@ -5573,13 +5573,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01ac13769d0a73408f1f535480b3d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPC_NAME: RYAN
+  NPC_NAME: SARA
   DESCRIPTIONS:
-  - Hello1
-  - Hello2
-  - Hello3
-  - Hello4
-  - Hello5
+  - "Jeg \xF8nsker en langsigtet pr\xE6ventionsl\xF8sning."
+  - "Jeg har h\xF8rt at der vist er mange metoder for den slags."
+  - "Der skulle v\xE6re ting som p-spr\xF8jter, men at f\xE5 et intrauterint system
+    (IUD) skulle vist v\xE6re bedre."
   NPC_HEADER: {fileID: 9106220453187000057}
   NPC_DESCRIPTION: {fileID: 6267019688996860947}
   COUNT_TXT: {fileID: 1765184096608471198}

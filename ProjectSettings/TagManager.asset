@@ -9,6 +9,7 @@ TagManager:
   - PlayerProjectile
   - BOSS_START
   - Boss
+  - LoadingScreen
   layers:
   - Default
   - TransparentFX

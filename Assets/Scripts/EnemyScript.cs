@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public Transform player;
+    Transform player;
     NavMeshAgent agent;
     Animator animator;
 
@@ -36,6 +36,8 @@ public class EnemyScript : MonoBehaviour
         escapeMinigame = GameObject.Find("GameManager").GetComponent<EscapeMinigame>();
 
         virtualCamera = GameObject.Find("Virtual Camera");
+
+        player = GameObject.Find("PlayerModel").transform;
     }
 
     // Update is called once per frame
