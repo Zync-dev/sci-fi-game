@@ -90,4 +90,9 @@ public class MainMenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void InfoBtn()
+    {
+        Application.OpenURL("https://sexogsamfund.dk");
+    }
 }

@@ -205,6 +205,8 @@ public class BossScript : MonoBehaviour
 
         PlayerAttack playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
         playerAttack.Attack();
+
+        playerMovement.DisableAllControls(true);
     }
     void WrongAnswer()
     {
