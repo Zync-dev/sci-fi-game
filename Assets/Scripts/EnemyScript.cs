@@ -55,7 +55,7 @@ public class EnemyScript : MonoBehaviour
             agent.ResetPath();
         }
 
-        if(agent.velocity.magnitude > 0)
+        if(agent.velocity.magnitude > 0 && !isEnemyDead)
         {
             animator.SetBool("isWalking", true);
         } else
@@ -111,13 +111,13 @@ public class EnemyScript : MonoBehaviour
             isEnemyAttacking = false;
 
             animator.SetBool("isWalking", false);
-            animator.SetBool("isDying", true);
             enemyCanAttack = false;
 
             CapsuleCollider[] collider = GetComponents<CapsuleCollider>();
             foreach (CapsuleCollider collider2 in collider) { collider2.enabled = false; }
 
             isEnemyDead = true;
+            animator.Play("Dying");
         }
 
         if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) <= enemySoundDistance && !hasStartedSoundCoroutine)

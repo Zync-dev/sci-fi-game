@@ -63,12 +63,12 @@ public class BossScript : MonoBehaviour
             {
                 lostWonScreen.SetActive(true);
                 lostWonScreen.GetComponent<Animator>().Play("LostWonUIShow");
-                lostWonText.text = "DU HAR VUNDET OVER DE BERØRENDE MONSTRE. VERDEN ER NU IGEN FRI!";
+                lostWonText.text = "DU HAR VUNDET OVER DE BERØRENDE ROBOTTER. VERDEN ER NU IGEN FRI!";
             } else
             {
                 lostWonScreen.SetActive(true);
                 lostWonScreen.GetComponent<Animator>().Play("LostWonUIShow");
-                lostWonText.text = "DU HAR TABT OVER DE BERØRENDE MONSTRE. VERDEN ER FORTSAT BESAT!";
+                lostWonText.text = "DU HAR TABT OVER DE BERØRENDE ROBOTTER. VERDEN ER FORTSAT BESAT!";
             }
         }
     }

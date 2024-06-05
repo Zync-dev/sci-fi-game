@@ -1883,7 +1883,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1000
 --- !u!1 &1681402550721282898
 GameObject:
   m_ObjectHideFlags: 0
@@ -5582,7 +5582,7 @@ MonoBehaviour:
   - "Jeg har h\xF8rt at der vist er mange metoder for den slags."
   - "Der skulle v\xE6re ting som p-spr\xF8jter, men at f\xE5 et intrauterint system
     (IUD) skulle vist v\xE6re bedre."
-  isBoy: 1
+  npcSoundDistance: 25
   NPC_HEADER: {fileID: 9106220453187000057}
   NPC_DESCRIPTION: {fileID: 6267019688996860947}
   COUNT_TXT: {fileID: 1765184096608471198}

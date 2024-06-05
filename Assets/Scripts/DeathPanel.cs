@@ -11,7 +11,6 @@ public class DeathPanel : MonoBehaviour
     public void OpenDeathPanel()
     {
         deathPanel.SetActive(true);
-        this.GetComponent<Animator>().Play("ShowPanel");
     }
 
     public void MainMenu()

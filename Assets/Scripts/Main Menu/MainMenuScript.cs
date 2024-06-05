@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class MainMenuScript : MonoBehaviour
     public GameObject informationPanel;
     public GameObject creditsPanel;
 
+    public GameObject playBtn;
+
     // BTNS
     bool playBtnClick = false;
     bool endless = false;
@@ -26,6 +30,19 @@ public class MainMenuScript : MonoBehaviour
     private void Start()
     {
         switchManager = playSwitch.GetComponent<SwitchManager>();
+    }
+
+    private void Update()
+    {
+        if(switchManager.isOn != true)
+        {
+            GameObject.FindGameObjectWithTag("PlayDescription").GetComponent<TMP_Text>().text = "ENDLESS ER IKKE TILGÆNGELIGT";
+            playBtn.GetComponent<Button>().interactable = false;
+        } else if (switchManager.isOn)
+        {
+            GameObject.FindGameObjectWithTag("PlayDescription").GetComponent<TMP_Text>().text = "VÆLG MELLEM ENDLESS OG STORY";
+            playBtn.GetComponent<Button>().interactable = true;
+        }
     }
 
     public void PlayBtn()
