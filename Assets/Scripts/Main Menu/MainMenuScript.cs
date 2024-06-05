@@ -23,10 +23,6 @@ public class MainMenuScript : MonoBehaviour
     bool endless = false;
     bool story = true;
 
-    bool settingsBtnClick = false;
-    bool infoBtnClick = false;
-    bool creditsBtnClick = false;
-
     private void Start()
     {
         switchManager = playSwitch.GetComponent<SwitchManager>();
