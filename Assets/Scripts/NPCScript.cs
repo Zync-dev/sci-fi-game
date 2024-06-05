@@ -8,7 +8,7 @@ public class NPCScript : MonoBehaviour
     [Header("EDIT THIS")]
     public string NPC_NAME;
     public List<string> DESCRIPTIONS = new List<string>();
-    public bool isBoy = true;
+    public float npcSoundDistance = 25f;
 
     [Header("NPC MODAL")]
     public TMP_Text NPC_HEADER;
@@ -24,8 +24,8 @@ public class NPCScript : MonoBehaviour
     bool isDialogOpen = false;
     int currentDesc = 0;
 
+    bool coroutineHasStarted = false;
     bool hasTalkedWithNPC = false;
-    float npcSoundDistance = 25f;
 
     PlayerMovement playerMovement;
 
@@ -34,8 +34,6 @@ public class NPCScript : MonoBehaviour
     {
         Player = GameObject.Find("PlayerModel");
         playerMovement = Player.GetComponent<PlayerMovement>();
-
-        StartCoroutine(PlaySounds());
     }
 
     // Update is called once per frame
@@ -48,6 +46,7 @@ public class NPCScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 StartNPCDialog();
+                hasTalkedWithNPC = true;
                 isDialogOpen = true;
             }
         } else
@@ -63,6 +62,12 @@ public class NPCScript : MonoBehaviour
         }
 
         COUNT_TXT.text = $"{currentDesc+1}/{DESCRIPTIONS.Count}";
+
+        if(Vector3.Distance(this.gameObject.transform.position, Player.transform.position) < npcSoundDistance && !coroutineHasStarted)
+        {
+            StartCoroutine(PlaySounds());
+            coroutineHasStarted = true;
+        }
     }
 
     void StartNPCDialog()
@@ -104,14 +109,10 @@ public class NPCScript : MonoBehaviour
     public IEnumerator PlaySounds()
     {
         AudioSource[] sounds = this.gameObject.GetComponents<AudioSource>();
-        while (true)
+        while (!hasTalkedWithNPC && Vector3.Distance(this.gameObject.transform.position, Player.transform.position) <= npcSoundDistance)
         {
-            while (!hasTalkedWithNPC && Player.transform.position.x < this.gameObject.transform.position.x + npcSoundDistance && Player.transform.position.x > this.gameObject.transform.position.x - npcSoundDistance)
-            {
-                yield return new WaitForSeconds(Random.Range(6f, 10f));
-                print(sounds.Length);
-                sounds[Random.Range(0, sounds.Length)].Play();
-            }
+            yield return new WaitForSeconds(Random.Range(6f, 10f));
+            sounds[Random.Range(0, sounds.Length)].Play();
         }
     }
 }
