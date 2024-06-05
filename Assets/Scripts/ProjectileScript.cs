@@ -13,6 +13,8 @@ public class ProjectileScript : MonoBehaviour
     ParticleSystem enemyHitParticle;
     ParticleSystem otherHitParticle;
 
+    public GameObject HitSound;
+
     private void Start()
     {
         this.transform.position += transform.forward * 1f;
@@ -39,6 +41,10 @@ public class ProjectileScript : MonoBehaviour
             EnemyScript enemyScript = other.gameObject.GetComponent<EnemyScript>();
 
             enemyScript.enemyHealth--;
+
+            GameObject hitSoundObj = Instantiate(HitSound);
+            hitSoundObj.transform.position = this.transform.position;
+            hitSoundObj.GetComponent<AudioSource>().Play();
 
             Destroy(this.gameObject);
         }

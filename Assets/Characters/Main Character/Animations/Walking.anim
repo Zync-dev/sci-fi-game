@@ -54318,7 +54318,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.48333332
     functionName: PlayStepSound
     data: 
     objectReferenceParameter: {fileID: 0}

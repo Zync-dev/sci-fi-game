@@ -10,6 +10,7 @@ TagManager:
   - BOSS_START
   - Boss
   - LoadingScreen
+  - MiniGamePrefab
   layers:
   - Default
   - TransparentFX

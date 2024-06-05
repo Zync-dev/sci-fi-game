@@ -68,6 +68,12 @@ public class NPCScript : MonoBehaviour
             StartCoroutine(PlaySounds());
             coroutineHasStarted = true;
         }
+
+        // Make sure player Y doesn't change because of bugs
+        if (this.gameObject.transform.position.y < -0.1 || this.gameObject.transform.position.y > -0.1)
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, -0.1f, this.gameObject.transform.position.z);
+        }
     }
 
     void StartNPCDialog()

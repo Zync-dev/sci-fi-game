@@ -135,6 +135,7 @@ MonoBehaviour:
   speed: 20
   enemyHitObj: {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
   otherHitObj: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  HitSound: {fileID: 5772950832647357697, guid: 9572046f24e2f874aa791459e8c013f0, type: 3}
 --- !u!65 &828781477575895911
 BoxCollider:
   m_ObjectHideFlags: 0

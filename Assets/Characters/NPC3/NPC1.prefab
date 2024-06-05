@@ -1438,7 +1438,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0005603703, y: 0.9726108, z: -0.00013529843, w: -0.23243922}
   m_LocalPosition: {x: -0.012843487, y: 1.4217501, z: -0.05021537}
-  m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3958205644820110997}
@@ -5453,6 +5453,7 @@ MonoBehaviour:
   - "Jeg l\xE6rte at det er vigtigt med frivillig og entusiastisk tilladelse."
   - "Det g\xE6lder alle seksuelle situationer."
   - Hello5
+  npcSoundDistance: 25
   NPC_HEADER: {fileID: 9106220453187000057}
   NPC_DESCRIPTION: {fileID: 6267019688996860947}
   COUNT_TXT: {fileID: 1765184096608471198}

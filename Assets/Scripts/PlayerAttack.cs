@@ -47,6 +47,12 @@ public class PlayerAttack : MonoBehaviour
         stopInstance.transform.rotation = this.gameObject.transform.rotation;
     }
 
+    public void PlaySound()
+    {
+        AudioSource[] FireSignSound = GetComponents<AudioSource>();
+        FireSignSound[1].Play();
+    }
+
     public void AnimEnd()
     {
         animator.SetBool("isAttacking", false);

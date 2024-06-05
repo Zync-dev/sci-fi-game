@@ -85,7 +85,12 @@ public class EnemyScript : MonoBehaviour
 
                 StartCoroutine(PlayPlayerSounds());
 
-                this.gameObject.GetComponent<AudioSource>().Play();
+                AudioSource[] sounds = this.gameObject.GetComponents<AudioSource>();
+                foreach(AudioSource sound in sounds)
+                {
+                    sound.Stop();
+                }
+                sounds[0].Play();
 
                 StartCoroutine(DamagePlayer());
 
@@ -119,6 +124,12 @@ public class EnemyScript : MonoBehaviour
         {
             StartCoroutine(PlaySounds());
             hasStartedSoundCoroutine = true;
+        }
+
+        // Make sure player Y doesn't change because of bugs
+        if (this.gameObject.transform.position.y < -0.83 || this.gameObject.transform.position.y > -0.83)
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, -0.83f, this.gameObject.transform.position.z);
         }
     }
 
@@ -168,10 +179,10 @@ public class EnemyScript : MonoBehaviour
         AudioSource[] sounds = player.gameObject.GetComponents<AudioSource>();
         while (playerMovement.animator.GetBool("isTerrified") == true)
         {
-            yield return new WaitForSeconds(Random.Range(2f, 4f));
+            yield return new WaitForSeconds(Random.Range(2.5f, 4f));
             if(playerMovement.animator.GetBool("isTerrified") == true)
             {
-                sounds[Random.Range(1, sounds.Length)].Play();
+                sounds[Random.Range(3, sounds.Length)].Play();
             }
         }
     }
