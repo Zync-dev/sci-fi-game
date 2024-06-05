@@ -8,6 +8,7 @@ public class NPCScript : MonoBehaviour
     [Header("EDIT THIS")]
     public string NPC_NAME;
     public List<string> DESCRIPTIONS = new List<string>();
+    public bool isBoy = true;
 
     [Header("NPC MODAL")]
     public TMP_Text NPC_HEADER;
@@ -23,6 +24,9 @@ public class NPCScript : MonoBehaviour
     bool isDialogOpen = false;
     int currentDesc = 0;
 
+    bool hasTalkedWithNPC = false;
+    float npcSoundDistance = 25f;
+
     PlayerMovement playerMovement;
 
     // Start is called before the first frame update
@@ -30,6 +34,8 @@ public class NPCScript : MonoBehaviour
     {
         Player = GameObject.Find("PlayerModel");
         playerMovement = Player.GetComponent<PlayerMovement>();
+
+        StartCoroutine(PlaySounds());
     }
 
     // Update is called once per frame
@@ -93,5 +99,19 @@ public class NPCScript : MonoBehaviour
         NPC_MODAL.SetActive(false);
         playerMovement.DisableAllControls(false);
         playerUI.SetActive(true);
+    }
+
+    public IEnumerator PlaySounds()
+    {
+        AudioSource[] sounds = this.gameObject.GetComponents<AudioSource>();
+        while (true)
+        {
+            while (!hasTalkedWithNPC && Player.transform.position.x < this.gameObject.transform.position.x + npcSoundDistance && Player.transform.position.x > this.gameObject.transform.position.x - npcSoundDistance)
+            {
+                yield return new WaitForSeconds(Random.Range(6f, 10f));
+                print(sounds.Length);
+                sounds[Random.Range(0, sounds.Length)].Play();
+            }
+        }
     }
 }

@@ -36,7 +36,7 @@ public class EnemyScript : MonoBehaviour
 
         virtualCamera = GameObject.Find("Virtual Camera");
 
-        player = GameObject.Find("PlayerModel").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -77,6 +77,8 @@ public class EnemyScript : MonoBehaviour
                 playerMovement.animator.SetBool("isTerrified", true);
                 enemyCanAttack = false;
                 isEnemyAttacking = true;
+
+                this.gameObject.GetComponent<AudioSource>().Play();
 
                 StartCoroutine(DamagePlayer());
 

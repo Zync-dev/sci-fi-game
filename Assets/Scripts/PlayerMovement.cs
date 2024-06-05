@@ -106,6 +106,12 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(StaminaDepletion());
             stamina += 1;
         }
+
+        // Make sure player Y doesn't change because of bugs
+        if (this.gameObject.transform.position.y < -0.83 || this.gameObject.transform.position.y > -0.83)
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, -0.83f, this.gameObject.transform.position.z);
+        }
     }
 
     public IEnumerator StaminaDepletion()
