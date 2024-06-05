@@ -24,6 +24,9 @@ public class EnemyScript : MonoBehaviour
 
     public float enemyHealth = 1f;
 
+    public float enemySoundDistance = 10;
+    bool hasStartedSoundCoroutine = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +40,14 @@ public class EnemyScript : MonoBehaviour
         virtualCamera = GameObject.Find("Virtual Camera");
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        StartCoroutine(PlaySounds());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyHealth > 0 && (this.transform.position.x - player.transform.position.x) <= 15)
+        if (enemyHealth > 0 && Vector3.Distance(this.gameObject.transform.position, player.transform.position) <= 15)
         {
             agent.destination = player.position;
         } else
@@ -78,6 +83,8 @@ public class EnemyScript : MonoBehaviour
                 enemyCanAttack = false;
                 isEnemyAttacking = true;
 
+                StartCoroutine(PlayPlayerSounds());
+
                 this.gameObject.GetComponent<AudioSource>().Play();
 
                 StartCoroutine(DamagePlayer());
@@ -107,6 +114,12 @@ public class EnemyScript : MonoBehaviour
 
             isEnemyDead = true;
         }
+
+        if (Vector3.Distance(this.gameObject.transform.position, player.transform.position) <= enemySoundDistance && !hasStartedSoundCoroutine)
+        {
+            StartCoroutine(PlaySounds());
+            hasStartedSoundCoroutine = true;
+        }
     }
 
     public void StopAttack()
@@ -116,6 +129,7 @@ public class EnemyScript : MonoBehaviour
         virtualCamera.GetComponent<Animator>().Play("CameraZoomOut");
         animator.SetBool("isAttacking", false);
         StartCoroutine(AttackCooldown());
+        StopCoroutine(PlayPlayerSounds());
         isEnemyAttacking = false;
     }
 
@@ -132,6 +146,33 @@ public class EnemyScript : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             playerHealth.DamagePlayer(5f);
+        }
+    }
+
+    public IEnumerator PlaySounds()
+    {
+        AudioSource[] sounds = this.gameObject.GetComponents<AudioSource>();
+        while(!isEnemyAttacking && !isEnemyDead && Vector3.Distance(this.transform.position, player.transform.position) <= enemySoundDistance)
+        {
+            yield return new WaitForSeconds(Random.Range(3f,6f));
+            if(!isEnemyAttacking && !isEnemyDead)
+            {
+                sounds[Random.Range(1, sounds.Length)].Play();
+            }
+            hasStartedSoundCoroutine = false;
+        }
+    }
+
+    public IEnumerator PlayPlayerSounds()
+    {
+        AudioSource[] sounds = player.gameObject.GetComponents<AudioSource>();
+        while (playerMovement.animator.GetBool("isTerrified") == true)
+        {
+            yield return new WaitForSeconds(Random.Range(2f, 4f));
+            if(playerMovement.animator.GetBool("isTerrified") == true)
+            {
+                sounds[Random.Range(1, sounds.Length)].Play();
+            }
         }
     }
 }

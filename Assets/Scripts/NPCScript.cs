@@ -111,8 +111,11 @@ public class NPCScript : MonoBehaviour
         AudioSource[] sounds = this.gameObject.GetComponents<AudioSource>();
         while (!hasTalkedWithNPC && Vector3.Distance(this.gameObject.transform.position, Player.transform.position) <= npcSoundDistance)
         {
-            yield return new WaitForSeconds(Random.Range(6f, 10f));
-            sounds[Random.Range(0, sounds.Length)].Play();
+            yield return new WaitForSeconds(Random.Range(5f, 7f));
+            if(!hasTalkedWithNPC)
+            {
+                sounds[Random.Range(0, sounds.Length)].Play();
+            }
         }
     }
 }
