@@ -72,7 +72,7 @@ public class ProjectileScript : MonoBehaviour
 
     public IEnumerator DestroyObj()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0.9f);
         Destroy(this.gameObject);
     }
 }
