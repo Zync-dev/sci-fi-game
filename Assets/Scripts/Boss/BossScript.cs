@@ -35,6 +35,8 @@ public class BossScript : MonoBehaviour
     public GameObject playerModel;
     public GameObject enemyModel;
 
+    public GameObject hitEffect;
+
     public string[,] questions = {
         { "Hvad er den mest effektive metode til at forhindre seksuelt overførte infektioner (STI'er) under samleje?", "Brug af tandtråd", "Brug af kondom", "Brug af antibiotika", "Brug af vitamin C", "2" /* <---- CORRECT ANSWER IS 2*/},
         { "Hvilken type præventionsmiddel er en spiral?", "En pille", "En injektion", "Et implantat", "Et intrauterint system (IUD)", "4" /* <---- CORRECT ANSWER IS 4*/},
@@ -57,6 +59,9 @@ public class BossScript : MonoBehaviour
 
     private void Update()
     {
+        PlayerAttack playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+        playerAttack.canAttack = false;
+
         if (bossSlider.value >= 100 || bossSlider.value <= 0)
         {
             if(bossSlider.value >= 100)
@@ -220,6 +225,11 @@ public class BossScript : MonoBehaviour
         StartCoroutine(StartMinigame(true));
 
         enemyModel.GetComponent<Animator>().Play("Mutant Swiping");
+
+        PlayerAttack playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+        playerMovement.DisableAllControls(true);
+
+        StartCoroutine(PlaySound());
     }
 
     void ChangeSliderValue(float num)
@@ -280,5 +290,16 @@ public class BossScript : MonoBehaviour
                 StartQuiz();
             }
         }
+    }
+
+    public IEnumerator PlaySound()
+    {
+        yield return new WaitForSeconds(0.75f);
+        enemyModel.GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(0.5f);
+        GameObject hitEff = Instantiate(hitEffect);
+        hitEff.transform.position = playerModel.transform.position += new Vector3(0f, 1f, 0f);
+        hitEff.transform.localScale = new Vector3(15f, 15f, 15f);
+        hitEff.GetComponent<ParticleSystem>().Play();
     }
 }

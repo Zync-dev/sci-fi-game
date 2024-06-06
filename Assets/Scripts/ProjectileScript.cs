@@ -53,6 +53,10 @@ public class ProjectileScript : MonoBehaviour
             ParticleSystem hit = Instantiate(enemyHitParticle, this.transform.position, Quaternion.identity);
             hit.Play();
 
+            GameObject hitSoundObj = Instantiate(HitSound);
+            hitSoundObj.transform.position = this.transform.position;
+            hitSoundObj.GetComponent<AudioSource>().Play();
+
             Destroy(this.gameObject);
         }
     }
