@@ -37,6 +37,8 @@ public class BossScript : MonoBehaviour
 
     public GameObject hitEffect;
 
+    bool battleStarted = false;
+
     public string[,] questions = {
         { "Hvad er den mest effektive metode til at forhindre seksuelt overførte infektioner (STI'er) under samleje?", "Brug af tandtråd", "Brug af kondom", "Brug af antibiotika", "Brug af vitamin C", "2" /* <---- CORRECT ANSWER IS 2*/},
         { "Hvilken type præventionsmiddel er en spiral?", "En pille", "En injektion", "Et implantat", "Et intrauterint system (IUD)", "4" /* <---- CORRECT ANSWER IS 4*/},
@@ -59,9 +61,6 @@ public class BossScript : MonoBehaviour
 
     private void Update()
     {
-        PlayerAttack playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
-        playerAttack.canAttack = false;
-
         if (bossSlider.value >= 100 || bossSlider.value <= 0)
         {
             if(bossSlider.value >= 100)
@@ -76,6 +75,12 @@ public class BossScript : MonoBehaviour
                 lostWonText.text = "DU HAR TABT OVER DE BERØRENDE ROBOTTER. VERDEN ER FORTSAT BESAT!";
             }
         }
+
+        if (battleStarted)
+        {
+            PlayerAttack playerAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttack>();
+            playerAttack.canAttack = false;
+        }
     }
 
     public void StartBossFight()
@@ -83,6 +88,7 @@ public class BossScript : MonoBehaviour
         playerMovement.DisableAllControls(true);
         playerHealth.SetActive(false);
         playerStamina.SetActive(false);
+        battleStarted = true;
         Fade(0);
     }
 
