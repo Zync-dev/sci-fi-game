@@ -81,4 +81,14 @@ public class EscapeMinigame : MonoBehaviour
             }
         }
     }
+
+    public void StopMinigame()
+    {
+        spawnedAmout = 999;
+        GameObject[] minigameBtns = GameObject.FindGameObjectsWithTag("MiniGamePrefab");
+        foreach (GameObject m in minigameBtns) 
+        {
+            Destroy(m);
+        }
+    }
 }

@@ -72,7 +72,7 @@ public class EnemyScript : MonoBehaviour
                 activeProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
                 playerMovement.animator.SetBool("isAttacking", false);
 
-                foreach(GameObject projectile in activeProjectiles) 
+                foreach (GameObject projectile in activeProjectiles)
                 {
                     Destroy(projectile);
                 }
@@ -96,13 +96,13 @@ public class EnemyScript : MonoBehaviour
 
                 playerHealth.MakePlayerImmune(true);
 
-                escapeMinigame.StartMinigame("Enemy");
+                StartCoroutine(StartMinigameAfterDelay("Enemy"));
 
                 virtualCamera.GetComponent<Animator>().Play("CameraZoom");
             }
         }
 
-        if(enemyHealth <= 0f && !isEnemyDead)
+        if(enemyHealth <= 0f && !isEnemyDead && !isEnemyAttacking)
         {
             playerMovement.DisableAllControls(false);
             playerMovement.animator.SetBool("isTerrified", false);
@@ -185,5 +185,11 @@ public class EnemyScript : MonoBehaviour
                 sounds[Random.Range(3, sounds.Length)].Play();
             }
         }
+    }
+
+    public IEnumerator StartMinigameAfterDelay(string minigameType)
+    {
+        yield return new WaitForSeconds(0.1f); // adjust the delay as needed
+        escapeMinigame.StartMinigame(minigameType);
     }
 }
