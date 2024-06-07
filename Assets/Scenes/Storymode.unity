@@ -2153,6 +2153,10 @@ PrefabInstance:
       value: EnemyModel (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -4489,7 +4493,7 @@ PrefabInstance:
       objectReference: {fileID: 629368680}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: DESCRIPTIONS.Array.data[0]
@@ -5393,8 +5397,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341853376}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1778372, y: -0.000000016932109, z: 0.0000000030599345, w: 0.98405993}
-  m_LocalPosition: {x: -2.48, y: 4, z: -13.179953}
+  m_LocalRotation: {x: 0.17783721, y: 0.000000016932109, z: -0.000000003059935, w: 0.98405993}
+  m_LocalPosition: {x: 150, y: 4, z: -13.179953}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10633,6 +10637,10 @@ PrefabInstance:
       value: EnemyModel (10)
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -13478,7 +13486,7 @@ PrefabInstance:
       objectReference: {fileID: 1073056778}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3848809488980995069, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: MaxDistance
@@ -16447,8 +16455,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1778372, y: -0.000000016932109, z: 0.0000000030599345, w: 0.98405993}
-  m_LocalPosition: {x: -2.48, y: 4, z: -13.179953}
+  m_LocalRotation: {x: 0.17783721, y: 0.000000016932109, z: -0.000000003059935, w: 0.98405993}
+  m_LocalPosition: {x: 150, y: 4, z: -13.179953}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16654,7 +16662,7 @@ PrefabInstance:
       objectReference: {fileID: 1073056778}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: DESCRIPTIONS.Array.size
@@ -18142,102 +18150,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8679094292184788321, guid: 7d013ec77548c98409cfe15794850582, type: 3}
   m_PrefabInstance: {fileID: 1689406525}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1070544132
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070544122}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2a57151186405584788765fc4544ccd1, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 1
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1073056778
 GameObject:
   m_ObjectHideFlags: 0
@@ -20029,7 +19941,7 @@ PrefabInstance:
       objectReference: {fileID: 1073056778}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: DESCRIPTIONS.Array.data[0]
@@ -22254,7 +22166,7 @@ PrefabInstance:
       objectReference: {fileID: 629368680}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: DESCRIPTIONS.Array.data[0]
@@ -24108,6 +24020,10 @@ PrefabInstance:
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_Name
       value: EnemyModel (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
@@ -27122,6 +27038,10 @@ PrefabInstance:
       value: EnemyModel (9)
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -28635,6 +28555,10 @@ PrefabInstance:
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_Name
       value: EnemyModel (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
@@ -30390,6 +30314,10 @@ PrefabInstance:
       value: EnemyModel (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -31038,10 +30966,7 @@ PrefabInstance:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1460832469210593603, guid: 7d013ec77548c98409cfe15794850582, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1070544132}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d013ec77548c98409cfe15794850582, type: 3}
 --- !u!1 &1701612057
 GameObject:
@@ -31680,7 +31605,7 @@ PrefabInstance:
       objectReference: {fileID: 629368680}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: DESCRIPTIONS.Array.data[0]
@@ -32918,6 +32843,10 @@ PrefabInstance:
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_Name
       value: EnemyModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
@@ -34250,7 +34179,7 @@ PrefabInstance:
       objectReference: {fileID: 629368680}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: DESCRIPTIONS.Array.size
@@ -36988,6 +36917,10 @@ PrefabInstance:
       value: EnemyModel (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382213726908444670, guid: ca477e9d6b1da9548be1269ae276281b, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -37585,7 +37518,7 @@ PrefabInstance:
       objectReference: {fileID: 1073056778}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1398726448294273311, guid: 98cb8a7a419476c4fab21e11523da694, type: 3}
       propertyPath: DESCRIPTIONS.Array.size
@@ -39624,7 +39557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1029255968424943564, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.48
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1029255968424943564, guid: 792965d070de7444bbfba672d8e1cb18, type: 3}
       propertyPath: m_LocalPosition.y
@@ -40890,7 +40823,7 @@ PrefabInstance:
       objectReference: {fileID: 629368680}
     - target: {fileID: 1398726448294273311, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: npcSoundDistance
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6262737074336238258, guid: 1e176da4c2c253c44aad6b5ea403bac9, type: 3}
       propertyPath: m_Name
